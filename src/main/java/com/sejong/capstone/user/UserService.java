@@ -15,6 +15,9 @@ public class UserService {
 
     @Transactional
     public void join(UserFormDTO userFormDTO){
+        if(userFormDTO.getPassword() != userFormDTO.getCheckPassword()){
+            throw new InvalidInputException(MessageUtils.MISMATCH_PASSWORD);
+        }
         if(userRepository.existsByEmail(userFormDTO.getEmail())){
             throw new InvalidInputException(MessageUtils.DUPLICATE_USER_EMAIL);
         }
@@ -29,8 +32,16 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void select(Long id){
-
+    public User findById(Long id){
+        User user = userRepository.findById(id).orElseThrow(() ->
+                new InvalidInputException(MessageUtils.INVALID_USER_ID));
+        return user;
     }
 
+    @Transactional
+    public void deleteUser(Long id){
+        User user = userRepository.findById(id).orElseThrow(() ->
+                new InvalidInputException(MessageUtils.INVALID_USER_ID));
+        userRepository.delete(user);
+    }
 }

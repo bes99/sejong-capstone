@@ -1,10 +1,9 @@
 package com.sejong.capstone.user;
 
 import com.sejong.capstone.error.BaseResponse;
+import com.sejong.capstone.error.DataResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,11 +17,12 @@ public class UserController {
         return new BaseResponse();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?> select(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body("");
+    public DataResponse<User> select(@PathVariable Long id){
+        return new DataResponse<>(userService.findById(id));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body("");
+    public BaseResponse deleteUserById(@PathVariable Long id){
+        userService.deleteUser(id);
+        return new BaseResponse();
     }
 }
