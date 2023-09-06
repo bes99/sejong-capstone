@@ -19,5 +19,6 @@ public class Hospital {
     private Double latitude;
     private Double longitude;
     private String description;
+    private String tel;
 
 }
