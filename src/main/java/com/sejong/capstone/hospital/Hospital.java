@@ -15,10 +15,18 @@ public class Hospital {
     private Long id;
     private String name;
     private String address;
-    private String image;
     private Double latitude;
     private Double longitude;
     private String description;
+    private String classification;
+    @Column(name = "rough_map")
+    private String roughMap;
+    @Column(name = "closing_time_weekday")
+    private String closingTimeWeekday;
+    @Column(name = "closing_time_saturday")
+    private String closingTimeSaturday;
+    @Column(name = "closing_time_sunday")
+    private String closingTimeSunday;
     private String tel;
-
+    private String image;
 }
