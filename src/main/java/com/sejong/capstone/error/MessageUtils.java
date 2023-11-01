@@ -8,5 +8,6 @@ public class MessageUtils {
     public static final String MISMATCH_PASSWORD = "비밀번호가 불일치합니다.";
     public static final String INVALID_DISEASE_ID = "일치하는 질병 정보가 없습니다. 질병 id를 확인해주세요.";
     public static final String INVALID_OINTMENT_ID = "일치하는 연고 정보가 없습니다. 연고 id를 확인해주세요.";
+    public static final String NO_SEARCH_NEAR_HOSPITAL = "근처 가까운 병원이 존재하지 않습니다.";
 
 }

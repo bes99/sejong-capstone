@@ -1,5 +1,6 @@
 package com.sejong.capstone.error;
 
+import com.sejong.capstone.hospital.NoNearHospitalFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -20,5 +21,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidInputException.class)
     protected ResponseEntity<BaseResponse> invalidInputException(InvalidInputException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new BaseResponse(e.getMessage(),400));
+    }
+
+    @ExceptionHandler(NoNearHospitalFoundException.class)
+    public ResponseEntity<String> handleNoNearHospitalFoundException(NoNearHospitalFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }
