@@ -37,7 +37,10 @@ public class UserService {
                 new InvalidInputException(MessageUtils.INVALID_USER_ID));
         return user;
     }
-
+    @Transactional
+    public void setSexAndBirth(Long id, String sex, String birth){
+        userRepository.setUserSexAndBirth(id,sex,birth);
+    }
     @Transactional
     public void deleteUser(Long id){
         User user = userRepository.findById(id).orElseThrow(() ->
