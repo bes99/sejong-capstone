@@ -20,6 +20,12 @@ public class UserController {
     public DataResponse<User> select(@PathVariable Long id){
         return new DataResponse<>(userService.findById(id));
     }
+    @PutMapping("/{id}")
+    public BaseResponse setSexAndBirth(@PathVariable Long id, @RequestParam String sex,
+                                       @RequestParam String birth){
+        userService.setSexAndBirth(id,sex,birth);
+        return new BaseResponse();
+    }
     @DeleteMapping("/{id}")
     public BaseResponse deleteUserById(@PathVariable Long id){
         userService.deleteUser(id);

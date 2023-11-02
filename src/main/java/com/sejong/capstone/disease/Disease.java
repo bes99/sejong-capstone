@@ -1,7 +1,10 @@
 package com.sejong.capstone.disease;
 
+import com.sejong.capstone.userdisease.UserDisease;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -16,6 +19,8 @@ public class Disease {
     private String discernment;
     private String image;
     private String description;
+    @OneToMany(mappedBy = "disease")
+    private List<UserDisease> userDiseases;
 
 
 }
