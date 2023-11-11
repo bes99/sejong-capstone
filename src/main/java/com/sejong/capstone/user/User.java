@@ -24,6 +24,6 @@ public class User {
     private String password;
     private String sex;
     private String birth;
-    @OneToMany(mappedBy = "user")
-    private List<UserDisease> userDiseases;
+    @OneToOne(mappedBy = "user")
+    private UserDisease userDisease;
 }

@@ -31,6 +31,20 @@ public class UserService {
 
         userRepository.save(user);
     }
+    public UserResponse home(String email){
+        User user = userRepository.findByEmail(email).orElseThrow(() ->
+                new InvalidInputException(MessageUtils.INVALID_EMAIL_ID));
+
+        String diseaseName = "null";
+        if (user.getUserDisease() != null && user.getUserDisease().getDisease() != null) {
+            diseaseName = user.getUserDisease().getDisease().getDiscernment();
+        }
+        UserResponse userResponse = UserResponse.builder()
+                .name(user.getName())
+                .disease(diseaseName)
+                .build();
+        return userResponse;
+    }
 
     public User findById(Long id){
         User user = userRepository.findById(id).orElseThrow(() ->
