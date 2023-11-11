@@ -26,6 +26,10 @@ public class UserController {
         userService.setSexAndBirth(id,sex,birth);
         return new BaseResponse();
     }
+    @PostMapping("/home")
+    public DataResponse<UserResponse> home(@RequestBody UserLoginDTO userLoginDTO){
+        return new DataResponse<>(userService.home(userLoginDTO.getEmail()));
+    }
     @DeleteMapping("/{id}")
     public BaseResponse deleteUserById(@PathVariable Long id){
         userService.deleteUser(id);
