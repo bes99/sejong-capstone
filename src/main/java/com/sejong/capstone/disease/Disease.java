@@ -18,7 +18,10 @@ public class Disease {
     private Long id;
     private String discernment;
     private String image;
-    private String description;
+    private String description1;
+    private String description2;
+    private String description3;
+    private String description4;
     @OneToMany(mappedBy = "disease")
     private List<UserDisease> userDiseases;
 

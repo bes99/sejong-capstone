@@ -16,7 +16,10 @@ public class DiseaseService {
         Disease disease = Disease.builder()
                 .discernment(diseaseDTO.getDiscernment())
                 .image(diseaseDTO.getImage())
-                .description(diseaseDTO.getDescription())
+                .description1(diseaseDTO.getDescription1())
+                .description2(diseaseDTO.getDescription2())
+                .description3(diseaseDTO.getDescription3())
+                .description4(diseaseDTO.getDescription4())
                 .build();
         diseaseRepository.save(disease);
     }
