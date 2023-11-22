@@ -17,6 +17,8 @@ public class Disease {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String discernment;
+    @Column(name = "simple_description")
+    private String simpleDescription;
     private String image;
     private String description1;
     private String description2;
