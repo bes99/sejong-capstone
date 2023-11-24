@@ -30,6 +30,8 @@ public class HospitalService {
                         .roughMap(hospital.getRoughMap())
                         .tel(hospital.getTel())
                         .image(hospital.getImage())
+                        .latitude(hospital.getLatitude())
+                        .longitude(hospital.getLongitude())
                         .build())
                 .collect(Collectors.toList());
 
