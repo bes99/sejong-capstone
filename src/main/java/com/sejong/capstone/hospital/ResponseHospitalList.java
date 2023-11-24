@@ -14,4 +14,6 @@ public class ResponseHospitalList {
     private String roughMap;
     private String tel;
     private String image;
+    private Double latitude;
+    private Double longitude;
 }

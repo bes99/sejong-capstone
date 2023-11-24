@@ -1,5 +1,7 @@
 package com.sejong.capstone.disease;
 
+import com.sejong.capstone.diseaseointment.DiseaseOintment;
+import com.sejong.capstone.ointment.Ointment;
 import com.sejong.capstone.userdisease.UserDisease;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,6 +28,7 @@ public class Disease {
     private String description4;
     @OneToMany(mappedBy = "disease")
     private List<UserDisease> userDiseases;
-
+    @OneToMany(mappedBy = "disease")
+    private List<DiseaseOintment> ointments;
 
 }

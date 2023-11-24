@@ -1,18 +1,15 @@
 package com.sejong.capstone.disease;
 
 import com.sejong.capstone.config.S3Service;
+import com.sejong.capstone.error.MethodUtils;
 import com.sejong.capstone.error.InvalidInputException;
 import com.sejong.capstone.error.MessageUtils;
-import com.sejong.capstone.user.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.UUID;
 
 @Service
@@ -23,7 +20,7 @@ public class DiseaseService {
     @Transactional
     public void resistDisease(DiseaseDTO diseaseDTO) throws IOException{
 
-        File file = convertMultipartFileToFile(diseaseDTO.getImage());
+        File file = MethodUtils.convertMultipartFileToFile(diseaseDTO.getImage());
         String fileName = UUID.randomUUID().toString() + ".jpg";
         s3Service.uploadFile(fileName, file);
 
@@ -36,18 +33,6 @@ public class DiseaseService {
                 .description4(diseaseDTO.getDescription4())
                 .build();
         diseaseRepository.save(disease);
-    }
-    public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
-        File file = new File(multipartFile.getOriginalFilename());
-        try (FileOutputStream fos = new FileOutputStream(file);
-             InputStream is = multipartFile.getInputStream()) {
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = is.read(buffer)) != -1) {
-                fos.write(buffer, 0, bytesRead);
-            }
-        }
-        return file;
     }
 
     public ResponseDisease getDisease(Long id){

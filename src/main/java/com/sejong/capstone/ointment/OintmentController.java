@@ -5,18 +5,20 @@ import com.sejong.capstone.error.DataResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/ointment")
 public class OintmentController {
     private final OintmentService ointmentService;
     @PostMapping("/")
-    public BaseResponse resistDisease(@RequestBody OintmentDTO ointmentDTO){
+    public BaseResponse resistDisease(@ModelAttribute OintmentDTO ointmentDTO) throws IOException {
         ointmentService.resistOintment(ointmentDTO);
         return new BaseResponse();
     }
     @GetMapping("/{id}")
-    public DataResponse<Ointment> getDisease(@PathVariable Long id){
+    public DataResponse<ResponseOintment> getDisease(@PathVariable Long id){
         return new DataResponse<>(ointmentService.getOintment(id));
     }
 
