@@ -2,9 +2,12 @@ package com.sejong.capstone.user;
 
 import com.sejong.capstone.error.BaseResponse;
 import com.sejong.capstone.error.DataResponse;
+import com.sejong.capstone.ointment.ResponseOintment;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,6 +32,10 @@ public class UserController {
     @PostMapping("/home")
     public DataResponse<UserResponse> home(@RequestBody UserLoginDTO userLoginDTO){
         return new DataResponse<>(userService.home(userLoginDTO.getEmail()));
+    }
+    @GetMapping("/ointments/{id}")
+    public DataResponse<List<ResponseOintment>> getOintmentsForUser(@PathVariable Long id){
+        return new DataResponse<>(userService.getOintmentsForUser(id));
     }
     @DeleteMapping("/{id}")
     public BaseResponse deleteUserById(@PathVariable Long id){

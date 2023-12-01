@@ -4,13 +4,16 @@ import com.sejong.capstone.config.S3Service;
 import com.sejong.capstone.error.MethodUtils;
 import com.sejong.capstone.error.InvalidInputException;
 import com.sejong.capstone.error.MessageUtils;
+import com.sejong.capstone.ointment.Ointment;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
