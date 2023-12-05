@@ -24,7 +24,7 @@ public class UserService {
 
     @Transactional
     public void join(UserFormDTO userFormDTO){
-        if(userFormDTO.getPassword() != userFormDTO.getCheckPassword()){
+        if(!userFormDTO.getPassword().equals(userFormDTO.getCheckPassword())){
             throw new InvalidInputException(MessageUtils.MISMATCH_PASSWORD);
         }
         if(userRepository.existsByEmail(userFormDTO.getEmail())){
@@ -61,6 +61,7 @@ public class UserService {
         return user;
 
     }
+    @Transactional
     public List<ResponseOintment> getOintmentsForUser(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new InvalidInputException(MessageUtils.INVALID_USER_ID));
