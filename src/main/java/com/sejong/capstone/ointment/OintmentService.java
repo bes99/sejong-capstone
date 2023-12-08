@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -52,7 +54,22 @@ public class OintmentService {
                 .build();
         return responseOintment;
     }
-
+    public List<ResponseOintment> getOintmentList(){
+        List<Ointment> ointments = ointmentRepository.findAll();
+        List<ResponseOintment> responseOintments = ointments.stream()
+                .map(ointment -> ResponseOintment.builder()
+                        .name(ointment.getName())
+                        .price(ointment.getPrice())
+                        .description1(ointment.getDescription1())
+                        .description2(ointment.getDescription2())
+                        .description3(ointment.getDescription3())
+                        .description4(ointment.getDescription4())
+                        .description5(ointment.getDescription5())
+                        .image(ointment.getImage())
+                        .build())
+                .collect(Collectors.toList());
+        return responseOintments;
+    }
     @Transactional
     public void deleteOintment(Long id){
         if (!ointmentRepository.existsById(id)) {
