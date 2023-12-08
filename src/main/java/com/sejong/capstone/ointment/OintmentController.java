@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +21,10 @@ public class OintmentController {
     @GetMapping("/{id}")
     public DataResponse<ResponseOintment> getDisease(@PathVariable Long id){
         return new DataResponse<>(ointmentService.getOintment(id));
+    }
+    @GetMapping
+    public DataResponse<List<ResponseOintment>> getOintmentList(){
+        return new DataResponse<>(ointmentService.getOintmentList());
     }
 
     @DeleteMapping("/{id}")
